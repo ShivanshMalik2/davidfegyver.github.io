@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <title>David Fegyver</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+  <style>
+    .fa {
+      color: #fff
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 400;
+      color: #8c8c8c;
+      position: relative
+    }
+
+    body:after {
+      position: fixed;
+      top: -150px;
+      right: -50px;
+      bottom: 0;
+      content: '';
+      width: 400px;
+      height: 600px;
+      border: 2px solid rgba(255, 255, 255, .05);
+      z-index: -1;
+      -webkit-transform: rotate(-30deg);
+      -moz-transform: rotate(-30deg);
+      -ms-transform: rotate(-30deg);
+      -o-transform: rotate(-30deg);
+      transform: rotate(-30deg)
+    }
+
+    body:before {
+      position: fixed;
+      top: 500px;
+      left: -100px;
+      bottom: 0;
+      content: '';
+      width: 400px;
+      height: 400px;
+      border: 2px solid rgba(255, 255, 255, .05);
+      z-index: -1;
+      -webkit-transform: rotate(20deg);
+      -moz-transform: rotate(20deg);
+      -ms-transform: rotate(20deg);
+      -o-transform: rotate(20deg);
+      transform: rotate(20deg)
+    }
+
+    a {
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+      color: #2f89fc
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: #2f89fc
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      line-height: 1.5;
+      color: #fff;
+      font-weight: 400
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      console.log("Kedves olvasó");
+      console.log("Ez a weboldal nyílt forráskódú!");
+      console.log("Itt megtalálhatod: TODO");
+      console.log("Kérlek ne felejts el megemlíteni a felhasználáskor :D")
+      const obj = $("#data-spinner");
+      const datalist = [
+        'Programmer', 'Backend developer', 'Doing server stuff', 'Nodejs lover', 'Pokemon Go player', 'C3 Winner'
+      ];
+      headeranim(datalist, obj);
+    });
+
+    async function headeranim(datalist, obj) {
+
+      await wait(2000);
+      while (true) {
+
+        for (let i = 0; i < datalist.length - 1; i++) {
+          let next = datalist[i + 1];
+          let curr = datalist[i];
+
+
+          await transform(curr, next, obj)
+          await wait(1500);
+        }
+
+      }
+
+
+    }
+
+
+    function randomString(length = 1) {
+      let result = "";
+      for (let i = 0; i < length; i++) {
+        result += String.fromCharCode(Math.floor(Math.random() * 93 + 33))
+      }
+      return result;
+    }
+
+
+    async function transform(prev, next, obj) {
+      if (!prev || !next) return;
+      if (prev.length < next.length) {
+        for (let i = prev.length; i <= next.length; i++) {
+          obj.text(randomString(i));
+          await wait(150)
+        }
+      } else {
+        for (let i = prev.length; i >= next.length; i--) {
+          obj.text(randomString(i));
+          await wait(150)
+        }
+      }
+      obj.text(next)
+    }
+
+    async function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  </script>
+  <script>
+    $(function () {
+      $("#send").click(function (e) {
+        console.log('clicked')
+        var message = $("#message").val();
+        var email = $("#email").val();
+        //Ne hackelj meg kérlek :))
+        $.post(
+          "https://discord.com/api/webhooks/774716251679359007/mpTmt2tgK4_xnsoWrqLIRu_T5K1e7h65gDDkeD6VbveJqN89Ies5lRkqycjaQYxYe3E9", {
+            "content": `Email cím: ${email}\n Üzenet:${message}`
+          },
+          function () {
+            $("#response").text("Sikerült");
+
+          });
+
+
+          
+      });
+    });
+  </script>
+</head>
+
+<body class="page">
+  <section>
+    <div class="container" style="min-height: 80vh;">
+      <div class="row align-items-center text-center justify-content-center">
+        <div class="col-md-12" style="padding-top: 30vh;">
+          <p>Hello! I'm</p>
+          <h1 class="mb-3">David Fegyver</h1>
+          <h2 class="mb-5" id="data-spinner">
+            Programmer
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row d-flex">
+        <div class="col-md-4" style="background-image: url(&quot;https://m.blog.hu/ke/kemia7/image/ionvegy.png&quot;);">
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-6 wrap">
+          <div class="p-5">
+            <h2 class="mb-5">Hi! I'm David Fegyver</h2>
+            <p>I’m 14. I've been around computers since I was little and I've been coding for 4+ years now. I love
+              thinking about new ideas and turning them into big projects. I am interested in
+              Machine Learning, Data visualization/processing, Server side data handling and Hardware. </p>
+
+            <button type="button" class="btn btn-social-icon">
+              <a href="https://facebook.com/davidfegyver"><i class="fa fa-facebook"></i></a>
+            </button>
+            <button type="button" class="btn btn-social-icon">
+              <a href="https://github.com/davidfegyver"><i class="fa fa-github"></i></a>
+            </button>
+            <button type="button" class="btn btn-social-icon">
+              <a href="https://instagram.com/pea_and_friends"><i class="fa fa-instagram"></i></a>
+            </button>
+
+            <p>Email: fegyverdavid.bator@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row my-5 border-bottom">
+        <div class="col">
+          <h1>My Projects</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col content">
+          <ul class="item-list list-unstyled mb-0 px-3">
+            <li class="mb-5">
+              <h3 class="mb-0">Maskimum</h3>
+              <div class="text-justify"> TODO :P </div>
+              <div class="text-muted">
+                <a href="https://github.com/davidfegyver/szabadfogasu-maszk" target="_blank">Source</a> /
+                <a href="https://www.youtube.com/watch?v=eLyNWEL1Los" target="_blank">Demo video</a> /
+                #tensorflow, #python, #coronavirus</div>
+            </li>
+            <li class="mb-5">
+              <h3 class="mb-0">davidfegyver.github.io</h3>
+              <div class="text-justify"> Why don't list my website among my projects? :) It's a multilingual, static website with bootstrap, and a tiny bit of own CSS and JS</div>
+              <div class="text-muted"> <a href="https://davidfegyver.github.io/" target="_blank">Website</a> / <a
+                  href="https://github.com/davidfegyver/davidfegyver.github.io" target="_blank">Source</a> /
+                #bootstrap #css #static #website </div>
+            </li>
+            <li class="mb-5">
+              <h3 class="mb-0">Catmash</h3>
+              <div class="text-justify"> A little remake of Mark Zuckerbergs Facemash backend :P</div>
+              <div class="text-muted"><a href="https://github.com/davidfegyver/Catmash" target="_blank">Source</a> /
+                #facemash #nodejs #sqlite #facebook</div>
+            </li>
+            <li class="mb-5">
+              <h3 class="mb-0">Pgoegghatcher</h3>
+              <div class="text-justify"> The PGoEggHatcher is a bot that hatches eggs continuously in Pokemon Go, using defit</div>
+              <div class="text-muted"><a href="https://github.com/davidfegyver/Defit-PgoEggHatcher"
+                  target="_blank">Source</a> / #python #pokemon #hack </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section>
+    <div class="container">
+      <div class="row my-5 border-bottom">
+        <div class="col">
+          <div class="mb-3 text-muted"> </div>
+          <h1>Contact</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col content">
+          <div class="row">
+            <div class="col-md-6 mb-4 mb-md-0">
+              <p>Got a question or a project idea? Send me a message!</p>
+              <div class="form-group">
+                <input class="form-control" type="email" id="email" placeholder="Email address" required>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="4" id="message" placeholder="Message" required></textarea>
+              </div>
+
+
+              <button class="btn btn-primary" id="send">Send</button>
+              <h4 id="response" style="color: #27f394;"></h4>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>I am on Social Medias too!</p>
+            <div class="row">
+              <div class="col-2"> <a href="https://facebook.com/davidfegyver" target="_blank"><i
+                    class="fa fa-facebook-square"></i></a> </div>
+              <div class="col-2"> <a href="https://instagram.com/pea_and_friends" target="_blank"><i
+                    class="fa fa-instagram"></i></a> </div>
+              <div class="col-2"> <a href="https://github.com/davidfegyver" target="_blank"><i
+                    class="fa fa-github"></i></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </section>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p>
+            ;) Thanks for checking my website
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>
