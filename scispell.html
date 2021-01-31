@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nice Science Generator</title>
+    <style>
+        input#main,
+        span#container {
+            display: block;
+            box-sizing: border-box
+        }
+
+        div.element,
+        input#main,
+        span#container {
+            box-sizing: border-box
+        }
+
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            font-family: helvetica;
+            font-size: 30px;
+            height: 100%
+        }
+
+        input#main {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            padding: 40px;
+            font-size: 50px;
+            border-bottom: 5px solid #d3d3d3;
+            -webkit-transition: all .2s ease;
+            position: fixed;
+            z-index: 2
+        }
+
+        input#main:focus {
+            outline: 0;
+            border-bottom-color: #000
+        }
+
+        span#container {
+            height: calc(100% - 140px);
+            white-space: nowrap;
+            padding-top: 175px
+        }
+
+        div.element {
+            padding: 20px;
+            width: 200px;
+            height: 200px;
+            margin: 10px -2px 10px 0;
+            border: 2px solid #000;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center
+        }
+
+        div.element.imaginary {
+            background-image: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, #ddd 10px, #ddd 20px)
+        }
+
+        div.element.solid {
+            background-image: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, #dfd 10px, #dfd 20px)
+        }
+
+        div.element.liquid {
+            background-image: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, #ddf 10px, #ddf 20px)
+        }
+
+        div.element.gas {
+            background-image: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, #ffd 10px, #ffd 20px)
+        }
+
+        div.element.synthetic {
+            background-image: repeating-linear-gradient(-45deg, transparent 0, transparent 10px, #fdd 10px, #fdd 20px)
+        }
+
+        div.element>span {
+            display: block;
+            text-align: center;
+            flex-grow: 1
+        }
+
+        span.atomicnumber {
+            width: 100%;
+            text-align: left !important
+        }
+
+        span.symbol {
+            font-size: 40px;
+            text-transform: capitalize;
+            flex-grow: 2
+        }
+
+        span.symbol>span.faint {
+            background-image: repeating-linear-gradient(45deg, transparent 0, transparent 2px, #000 2px, #000 4px);
+            opacity: .5
+        }
+
+        span.atomicnumber,
+        span.mass,
+        span.name {
+            font-size: 20px;
+            text-transform: capitalize
+        }
+
+        div.spacer {
+            height: 1px;
+            width: 100%
+        }
+
+        @media print {
+            body {
+                padding: 2mm
+            }
+
+            input#main {
+                display: none
+            }
+
+            span#container {
+                padding-top: 0
+            }
+
+            div.element {
+                width: 40mm;
+                height: 40mm;
+                margin: -2px 0 0 -2px;
+                page-break-inside: auto
+            }
+
+            div.element>span {
+                font-size: 4mm
+            }
+
+            div.element>span.symbol {
+                font-size: 10mm
+            }
+
+            @page {
+                padding: 0;
+                margin: 10mm
+            }
+        }
+
+        span#cite {
+            font-style: italic;
+            display: block;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            font-family: helvetica;
+            font-size: 12px;
+            z-index: 2;
+            padding: 20px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="text" placeholder="Írd ide a szöveget" onchange="change();" />
+    <span id="container"></span>
+    <script>
+        let data = {
+            h: {
+                atomicnumber: 1,
+                name: "hydrogen",
+                mass: "1.008",
+                state: "gas"
+            },
+            he: {
+                atomicnumber: 2,
+                name: "helium",
+                mass: "4.002",
+                state: "gas"
+            },
+            li: {
+                atomicnumber: 3,
+                name: "lithium",
+                mass: "6.942",
+                state: "solid"
+            },
+            be: {
+                atomicnumber: 4,
+                name: "beryllium",
+                mass: "9.012",
+                state: "solid"
+            },
+            b: {
+                atomicnumber: 5,
+                name: "boron",
+                mass: "10.81",
+                state: "solid"
+            },
+            c: {
+                atomicnumber: 6,
+                name: "carbon",
+                mass: "12.01",
+                state: "solid"
+            },
+            n: {
+                atomicnumber: 7,
+                name: "nitrogen",
+                mass: "14.00",
+                state: "gas"
+            },
+            o: {
+                atomicnumber: 8,
+                name: "oxygen",
+                mass: "15.99",
+                state: "gas"
+            },
+            f: {
+                atomicnumber: 9,
+                name: "fluorine",
+                mass: "18.99",
+                state: "gas"
+            },
+            ne: {
+                atomicnumber: 10,
+                name: "neon",
+                mass: "20.17",
+                state: "gas"
+            },
+            na: {
+                atomicnumber: 11,
+                name: "sodium",
+                mass: "22.98",
+                state: "solid"
+            },
+            mg: {
+                atomicnumber: 12,
+                name: "magnesium",
+                mass: "24.30",
+                state: "solid"
+            },
+            al: {
+                atomicnumber: 13,
+                name: "aluminium",
+                mass: "26.98",
+                state: "solid"
+            },
+            si: {
+                atomicnumber: 14,
+                name: "silicon",
+                mass: "28.08",
+                state: "solid"
+            },
+            p: {
+                atomicnumber: 15,
+                name: "phosphorus",
+                mass: "30.97",
+                state: "solid"
+            },
+            s: {
+                atomicnumber: 16,
+                name: "sulfur",
+                mass: "32.06",
+                state: "solid"
+            },
+            cl: {
+                atomicnumber: 17,
+                name: "chlorine",
+                mass: "35.45",
+                state: "gas"
+            },
+            ar: {
+                atomicnumber: 18,
+                name: "argon",
+                mass: "39.94",
+                state: "gas"
+            },
+            k: {
+                atomicnumber: 19,
+                name: "potassium",
+                mass: "39.09",
+                state: "solid"
+            },
+            ca: {
+                atomicnumber: 20,
+                name: "calcium",
+                mass: "40.07",
+                state: "solid"
+            },
+            sc: {
+                atomicnumber: 21,
+                name: "scandium",
+                mass: "44.95",
+                state: "solid"
+            },
+            ti: {
+                atomicnumber: 22,
+                name: "titanium",
+                mass: "47.86",
+                state: "solid"
+            },
+            v: {
+                atomicnumber: 23,
+                name: "vanadium",
+                mass: "50.94",
+                state: "solid"
+            },
+            cr: {
+                atomicnumber: 24,
+                name: "chromium",
+                mass: "51.99",
+                state: "solid"
+            },
+            mn: {
+                atomicnumber: 25,
+                name: "manganese",
+                mass: "54.93",
+                state: "solid"
+            },
+            fe: {
+                atomicnumber: 26,
+                name: "iron",
+                mass: "55.84",
+                state: "solid"
+            },
+            co: {
+                atomicnumber: 27,
+                name: "cobalt",
+                mass: "58.93",
+                state: "solid"
+            },
+            ni: {
+                atomicnumber: 28,
+                name: "nickel",
+                mass: "58.69",
+                state: "solid"
+            },
+            cu: {
+                atomicnumber: 29,
+                name: "copper",
+                mass: "63.54",
+                state: "solid"
+            },
+            zn: {
+                atomicnumber: 30,
+                name: "zinc",
+                mass: "65.38",
+                state: "solid"
+            },
+            ga: {
+                atomicnumber: 31,
+                name: "gallium",
+                mass: "69.72",
+                state: "solid"
+            },
+            ge: {
+                atomicnumber: 32,
+                name: "germanium",
+                mass: "72.63",
+                state: "solid"
+            },
+            as: {
+                atomicnumber: 33,
+                name: "arsenic",
+                mass: "74.92",
+                state: "solid"
+            },
+            se: {
+                atomicnumber: 34,
+                name: "selenium",
+                mass: "78.97",
+                state: "solid"
+            },
+            br: {
+                atomicnumber: 35,
+                name: "bromine",
+                mass: "79.90",
+                state: "liquid"
+            },
+            kr: {
+                atomicnumber: 36,
+                name: "krypton",
+                mass: "83.79",
+                state: "gas"
+            },
+            rb: {
+                atomicnumber: 37,
+                name: "rubidium",
+                mass: "85.46",
+                state: "solid"
+            },
+            sr: {
+                atomicnumber: 38,
+                name: "strontium",
+                mass: "87.62",
+                state: "solid"
+            },
+            y: {
+                atomicnumber: 39,
+                name: "yttrium",
+                mass: "88.90",
+                state: "solid"
+            },
+            zr: {
+                atomicnumber: 40,
+                name: "zirconium",
+                mass: "91.22",
+                state: "solid"
+            },
+            nb: {
+                atomicnumber: 41,
+                name: "niobium",
+                mass: "92.90",
+                state: "solid"
+            },
+            mo: {
+                atomicnumber: 42,
+                name: "molybdenum",
+                mass: "95.95",
+                state: "solid"
+            },
+            tc: {
+                atomicnumber: 43,
+                name: "technetium",
+                mass: "[98]",
+                state: "synthetic"
+            },
+            ru: {
+                atomicnumber: 44,
+                name: "ruthenium",
+                mass: "101.0",
+                state: "solid"
+            },
+            rh: {
+                atomicnumber: 45,
+                name: "rhodium",
+                mass: "102.9",
+                state: "solid"
+            },
+            pd: {
+                atomicnumber: 46,
+                name: "palladium",
+                mass: "106.4",
+                state: "solid"
+            },
+            ag: {
+                atomicnumber: 47,
+                name: "silver",
+                mass: "107.8",
+                state: "solid"
+            },
+            cd: {
+                atomicnumber: 48,
+                name: "cadmium",
+                mass: "112.4",
+                state: "solid"
+            },
+            "in": {
+                atomicnumber: 49,
+                name: "indium",
+                mass: "114.8",
+                state: "solid"
+            },
+            sn: {
+                atomicnumber: 50,
+                name: "tin",
+                mass: "118.7",
+                state: "solid"
+            },
+            sb: {
+                atomicnumber: 51,
+                name: "antimony",
+                mass: "121.7",
+                state: "solid"
+            },
+            te: {
+                atomicnumber: 52,
+                name: "tellurium",
+                mass: "127.6",
+                state: "solid"
+            },
+            i: {
+                atomicnumber: 53,
+                name: "iodine",
+                mass: "126.9",
+                state: "solid"
+            },
+            xe: {
+                atomicnumber: 54,
+                name: "xenon",
+                mass: "131.2",
+                state: "gas"
+            },
+            cs: {
+                atomicnumber: 55,
+                name: "caesium",
+                mass: "132.9",
+                state: "solid"
+            },
+            ba: {
+                atomicnumber: 56,
+                name: "barium",
+                mass: "137.3",
+                state: "solid"
+            },
+            la: {
+                atomicnumber: 57,
+                name: "lanthanum",
+                mass: "138.9",
+                state: "solid"
+            },
+            ce: {
+                atomicnumber: 58,
+                name: "cerium",
+                mass: "140.1",
+                state: "solid"
+            },
+            pr: {
+                atomicnumber: 59,
+                name: "praseodymium",
+                mass: "140.9",
+                state: "solid"
+            },
+            nd: {
+                atomicnumber: 60,
+                name: "neodymium",
+                mass: "144.2",
+                state: "solid"
+            },
+            pm: {
+                atomicnumber: 61,
+                name: "promethium",
+                mass: "[145]",
+                state: "synthetic"
+            },
+            sm: {
+                atomicnumber: 62,
+                name: "samarium",
+                mass: "150.3",
+                state: "solid"
+            },
+            eu: {
+                atomicnumber: 63,
+                name: "europium",
+                mass: "151.9",
+                state: "solid"
+            },
+            gd: {
+                atomicnumber: 64,
+                name: "gadolinium",
+                mass: "157.2",
+                state: "solid"
+            },
+            tb: {
+                atomicnumber: 65,
+                name: "terbium",
+                mass: "158.9",
+                state: "solid"
+            },
+            dy: {
+                atomicnumber: 66,
+                name: "dysprosium",
+                mass: "162.5",
+                state: "solid"
+            },
+            ho: {
+                atomicnumber: 67,
+                name: "holmium",
+                mass: "164.9",
+                state: "solid"
+            },
+            er: {
+                atomicnumber: 68,
+                name: "erbium",
+                mass: "167.2",
+                state: "solid"
+            },
+            tm: {
+                atomicnumber: 69,
+                name: "thulium",
+                mass: "168.9",
+                state: "solid"
+            },
+            yb: {
+                atomicnumber: 70,
+                name: "ytterbium",
+                mass: "173.0",
+                state: "solid"
+            },
+            lu: {
+                atomicnumber: 71,
+                name: "lutetium",
+                mass: "174.9",
+                state: "solid"
+            },
+            hf: {
+                atomicnumber: 72,
+                name: "hafnium",
+                mass: "178.4",
+                state: "solid"
+            },
+            ta: {
+                atomicnumber: 73,
+                name: "tantalum",
+                mass: "180.9",
+                state: "solid"
+            },
+            w: {
+                atomicnumber: 74,
+                name: "tungsten",
+                mass: "183.8",
+                state: "solid"
+            },
+            re: {
+                atomicnumber: 75,
+                name: "rhenium",
+                mass: "186.2",
+                state: "solid"
+            },
+            os: {
+                atomicnumber: 76,
+                name: "osmium",
+                mass: "190.2",
+                state: "solid"
+            },
+            ir: {
+                atomicnumber: 77,
+                name: "iridium",
+                mass: "192.2",
+                state: "solid"
+            },
+            pt: {
+                atomicnumber: 78,
+                name: "platinum",
+                mass: "195.0",
+                state: "solid"
+            },
+            au: {
+                atomicnumber: 79,
+                name: "gold",
+                mass: "196.9",
+                state: "solid"
+            },
+            hg: {
+                atomicnumber: 80,
+                name: "mercury",
+                mass: "200.5",
+                state: "liquid"
+            },
+            tl: {
+                atomicnumber: 81,
+                name: "thallium",
+                mass: "204.3",
+                state: "solid"
+            },
+            pb: {
+                atomicnumber: 82,
+                name: "lead",
+                mass: "207.2",
+                state: "solid"
+            },
+            bi: {
+                atomicnumber: 83,
+                name: "bismuth",
+                mass: "208.9",
+                state: "solid"
+            },
+            po: {
+                atomicnumber: 84,
+                name: "polonium",
+                mass: "[209]",
+                state: "solid"
+            },
+            at: {
+                atomicnumber: 85,
+                name: "astatine",
+                mass: "[210]",
+                state: "solid"
+            },
+            rn: {
+                atomicnumber: 86,
+                name: "radon",
+                mass: "[222]",
+                state: "gas"
+            },
+            fr: {
+                atomicnumber: 87,
+                name: "francium",
+                mass: "[223]",
+                state: "solid"
+            },
+            ra: {
+                atomicnumber: 88,
+                name: "radium",
+                mass: "[226]",
+                state: "solid"
+            },
+            ac: {
+                atomicnumber: 89,
+                name: "actinium",
+                mass: "[227]",
+                state: "solid"
+            },
+            th: {
+                atomicnumber: 90,
+                name: "thorium",
+                mass: "232.0",
+                state: "solid"
+            },
+            pa: {
+                atomicnumber: 91,
+                name: "protactinium",
+                mass: "231.0",
+                state: "solid"
+            },
+            u: {
+                atomicnumber: 92,
+                name: "uranium",
+                mass: "238.0",
+                state: "solid"
+            },
+            np: {
+                atomicnumber: 93,
+                name: "neptunium",
+                mass: "[237]",
+                state: "synthetic"
+            },
+            pu: {
+                atomicnumber: 94,
+                name: "plutonium",
+                mass: "[244]",
+                state: "synthetic"
+            },
+            am: {
+                atomicnumber: 95,
+                name: "americium",
+                mass: "[243]",
+                state: "synthetic"
+            },
+            cm: {
+                atomicnumber: 96,
+                name: "curium",
+                mass: "[247]",
+                state: "synthetic"
+            },
+            bk: {
+                atomicnumber: 97,
+                name: "berkelium",
+                mass: "[247]",
+                state: "synthetic"
+            },
+            cf: {
+                atomicnumber: 98,
+                name: "californium",
+                mass: "[251]",
+                state: "synthetic"
+            },
+            es: {
+                atomicnumber: 99,
+                name: "einsteinium",
+                mass: "[252]",
+                state: "synthetic"
+            },
+            fm: {
+                atomicnumber: 100,
+                name: "fermium",
+                mass: "[257]",
+                state: "synthetic"
+            },
+            md: {
+                atomicnumber: 101,
+                name: "mendelevium",
+                mass: "[258]",
+                state: "synthetic"
+            },
+            no: {
+                atomicnumber: 102,
+                name: "nobelium",
+                mass: "[259]",
+                state: "synthetic"
+            },
+            lr: {
+                atomicnumber: 103,
+                name: "lawrencium",
+                mass: "[266]",
+                state: "synthetic"
+            },
+            rf: {
+                atomicnumber: 104,
+                name: "rutherfordium",
+                mass: "[267]",
+                state: "synthetic"
+            },
+            db: {
+                atomicnumber: 105,
+                name: "dubnium",
+                mass: "[268]",
+                state: "synthetic"
+            },
+            sg: {
+                atomicnumber: 106,
+                name: "seaborgium",
+                mass: "[269]",
+                state: "synthetic"
+            },
+            bh: {
+                atomicnumber: 107,
+                name: "bohrium",
+                mass: "[270]",
+                state: "synthetic"
+            },
+            hs: {
+                atomicnumber: 108,
+                name: "hassium",
+                mass: "[269]",
+                state: "synthetic"
+            },
+            mt: {
+                atomicnumber: 109,
+                name: "meitnerium",
+                mass: "[278]",
+                state: "synthetic"
+            },
+            ds: {
+                atomicnumber: 110,
+                name: "darmstadtium",
+                mass: "[281]",
+                state: "synthetic"
+            },
+            rg: {
+                atomicnumber: 111,
+                name: "roentgenium",
+                mass: "[282]",
+                state: "synthetic"
+            },
+            cn: {
+                atomicnumber: 112,
+                name: "copernicium",
+                mass: "[285]",
+                state: "synthetic"
+            },
+            uut: {
+                atomicnumber: 113,
+                name: "ununtrium",
+                mass: "[286]",
+                state: "synthetic"
+            },
+            fl: {
+                atomicnumber: 114,
+                name: "flerovium",
+                mass: "[289]",
+                state: "synthetic"
+            },
+            uup: {
+                atomicnumber: 115,
+                name: "ununpentium",
+                mass: "[289]",
+                state: "synthetic"
+            },
+            lv: {
+                atomicnumber: 116,
+                name: "livermorium",
+                mass: "[293]",
+                state: "synthetic"
+            },
+            uus: {
+                atomicnumber: 117,
+                name: "ununseptium",
+                mass: "[294]",
+                state: "synthetic"
+            },
+            uuo: {
+                atomicnumber: 118,
+                name: "ununoctium",
+                mass: "[294]",
+                state: "synthetic"
+            },
+            e: {
+                name: "Electron",
+                sym: "e-"
+            },
+            g: {
+                name: "Gluon"
+            },
+            l: {
+                name: "Lepton"
+            },
+            m: {
+                name: "Mass"
+            },
+            a: {
+                name: "Alpha Particle",
+                sym: "&alpha;"
+            },
+            z: {
+                name: "Z Boson"
+            },
+            j: {
+                name: "Joule"
+            },
+            t: {
+                name: "Tau Lepton",
+                sym: "&tau;"
+            },
+            q: {
+                name: "Quark"
+            },
+            d: {
+                name: "Deuterium"
+            },
+            x: {
+                name: "X Boson"
+            },
+            r: {
+                name: 'Röntgen'
+            }
+        }
+        let symbols = Object.keys(data).sort((a, s) => {
+            return s.length - a.length
+        })
+
+        function change() {
+            let returnval = [];
+            let text = document.getElementById("text").value;
+            text = text.replace(/[^a-zA-Z-+]/g, "").toLowerCase();
+
+            for (var i = 0; i < text.length; i++)
+                for (var t = text.length - i > 3 ? 3 : text.length - i, e = !1; !e;) {
+                    letter = text.substring(i, i + t--)
+                    for (var n = 0; n < symbols.length; n++)
+                        if (letter == symbols[n] && -1 == letter.indexOf("-")) {
+                            let letterdata = data[letter]
+                            returnval[i] = `<div class='element ${letterdata.state?letterdata.state:""} "'><span class='atomicnumber'>${letterdata.atomicnumber?letterdata.atomicnumber:""}</span><span class='symbol'>${letterdata.sym?letterdata.sym : letter}</span><span class='name'>${letterdata.name}</span><span class='mass'>${letterdata.mass?letterdata.mass:""}</span></div>`, e = !0, i += t;
+                            break
+                        }
+                }
+                document.getElementById("container").innerHTML = returnval.toString().replace(/,/g, "")
+        }
+    </script>
+</body>
+
+</html>
