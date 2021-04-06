@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html lang="hu" prefix="og: https://ogp.me/ns#">
+<html prefix="og: https://ogp.me/ns#">
 
-<head >
+<head>
   <title>David Fegyver</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta http-equiv="content-type" content="text/html charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
   <script src="https://kit.fontawesome.com/8debc5900f.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<meta name="msvalidate.01" content="C6EFB324B4EED57E3F5DD73A4B4265DE" />
+
+  <meta name="msvalidate.01" content="C6EFB324B4EED57E3F5DD73A4B4265DE" />
   <meta name="google-site-verification" content="vwvRgSPjMvdguaJfahYT0uPIRIHNOqKyTiqkSoPTOzI" />
-    <meta content="David Fegyver" property="og:title">
-    <meta content="test" property="og:description">
-    <meta content="http://davidfegyver.github.io" property="og:url">
-    <meta content="https://cdn0.iconfinder.com/data/icons/artificial-intelligence-butterscotch-vol-2/256/Reinforcement_Learning-512.png" property="og:image">
-    <meta content="#8080ff" data-react-helmet="true" name="theme-color">
+  <meta content="David Fegyver" property="og:title">
+  <meta content="The website of a young programmer :D " property="og:description">
+  <meta content="http://davidfegyver.github.io" property="og:url">
+  <meta
+    content="https://cdn0.iconfinder.com/data/icons/artificial-intelligence-butterscotch-vol-2/256/Reinforcement_Learning-512.png"
+    property="og:image">
+  <meta content="#8080ff" data-react-helmet="true" name="theme-color">
 
   <style>
     .fab {
@@ -30,7 +32,7 @@
       line-height: 1.8;
       font-weight: 400;
       color: #8c8c8c;
-      position: relative
+      position: relative;
     }
 
     body:after {
@@ -94,97 +96,13 @@
       font-weight: 400
     }
   </style>
-
-  <script>
-    $(document).ready(function () {
-      console.log("Kedves olvasó");
-      console.log("Ez a weboldal nyílt forráskódú!");
-      console.log("Itt megtalálhatod: https://github.com/davidfegyver/davidfegyver.github.io");
-      console.log("Kérlek ne felejts el megemlíteni a felhasználáskor :D")
-      const obj = $("#data-spinner");
-      const datalist = [
-        'Programmer', 'Backend developer', 'Doing server stuff', 'Nodejs lover', 'Pokemon Go player', 'C3 Winner'
-      ];
-      headeranim(datalist, obj);
-    });
-
-    async function headeranim(datalist, obj) {
-
-      await wait(2000);
-      while (true) {
-
-        for (let i = 0; i < datalist.length - 1; i++) {
-          let next = datalist[i + 1];
-          let curr = datalist[i];
-
-
-          await transform(curr, next, obj)
-          await wait(1500);
-        }
-
-      }
-
-
-    }
-
-
-    function randomString(length = 1) {
-      let result = "";
-      for (let i = 0; i < length; i++) {
-        result += String.fromCharCode(Math.floor(Math.random() * 93 + 33))
-      }
-      return result;
-    }
-
-
-    async function transform(prev, next, obj) {
-      if (!prev || !next) return;
-      if (prev.length < next.length) {
-        for (let i = prev.length; i <= next.length; i++) {
-          obj.text(randomString(i));
-          await wait(150)
-        }
-      } else {
-        for (let i = prev.length; i >= next.length; i--) {
-          obj.text(randomString(i));
-          await wait(150)
-        }
-      }
-      obj.text(next)
-    }
-
-    async function wait(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-  </script>
-  <script>
-    $(function () {
-      $("#send").click(function (e) {
-        console.log('clicked')
-        var message = $("#message").val();
-        var email = $("#email").val();
-        //Ne hackelj meg kérlek :))
-        $.post(
-          "https://discord.com/api/webhooks/780886497926447115/4aDkiJQ5tiJ-o4uuUgs-8-EfzOhlgUkT3jus0G0jJXZzmBtVGuNWQ_RFf2WlKAQ4kceK", {
-            "content": `Email cím: ${email}\n Üzenet:${message}`
-          },
-          function () {
-            $("#response").text("Sikerült");
-
-          });
-
-
-
-      });
-    });
-  </script>
 </head>
 
-<body class="page">
+<body>
   <section>
-    <div class="container" style="min-height: 80vh;">
+    <div class="container" style="min-height: 80vh">
       <div class="row align-items-center text-center justify-content-center">
-        <div class="col-md-12" style="padding-top: 30vh;">
+        <div class="col-md-12" style="padding-top: 30vh">
           <p>Hello! I'm</p>
           <h1 class="mb-3">David Fegyver</h1>
           <h2 class="mb-5" id="data-spinner">
@@ -197,29 +115,43 @@
   <section>
     <div class="container">
       <div class="row d-flex">
-        <div class="col-md-4" style="background-image: url(&quot;https://m.blog.hu/ke/kemia7/image/ionvegy.png&quot;);">
+        <div class="col-md-6">
+          <img src="https://avatars.githubusercontent.com/u/56135029" class="img-fluid"></img>
         </div>
-        <div class="col-md-2"></div>
         <div class="col-md-6 wrap">
           <div class="p-5">
+
             <h2 class="mb-5">Hi! I'm David Fegyver</h2>
+
             <p>I’m 14. I've been around computers since I was little and I've been coding for 4+ years now. I love
               thinking about new ideas and turning them into big projects. I am interested in
               Machine Learning, Data visualization/processing, Server side data handling and Hardware. </p>
-              <div class="row">            <div class="col-2"><a href="https://facebook.com/davidfegyver" target="_blank"><i
-                class="fab fa-facebook"></i></a></div>
 
-          <div class="col-2"><a href="https://github.com/davidfegyver" target="_blank"><i
-                class="fab fa-github"></i></a></div>
+            <div class="row">
+              <div class="col-2">
+                <a href="https://facebook.com/davidfegyverr" target="_blank">
+                  <i class="fab fa-facebook"></i>
+                </a>
+              </div>
 
-          <div class="col-2"><a href="https://instagram.com/pea_and_friends" target="_blank"><i
-                class="fab fa-instagram"></i></a></div>
+              <div class="col-2">
+                <a href="https://github.com/davidfegyver" target="_blank">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
 
-          <div class="col-2"><a href="https://discord.gg/Qgwg4rQ" target="_blank">
-              <i class="fab fa-discord"></i>
-            </a>
+              <div class="col-2">
+                <a href="https://instagram.com/pea_and_friends" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
 
-          </div></div>
+              <div class="col-2">
+                <a href="https://discord.gg/Qgwg4rQ" target="_blank">
+                  <i class="fab fa-discord"></i>
+                </a>
+              </div>
+            </div>
 
             <p>Email: fegyverdavid.bator@gmail.com</p>
           </div>
@@ -229,10 +161,8 @@
   </section>
   <section>
     <div class="container">
-      <div class="row my-5 border-bottom">
-        <div class="col">
-          <h1>My Projects</h1>
-        </div>
+      <div class="my-5 border-bottom">
+        <h1>My Projects</h1>
       </div>
       <div class="row">
         <div class="col content">
@@ -274,10 +204,8 @@
   </section>
   <section>
     <div class="container">
-      <div class="row my-5 border-bottom">
-        <div class="col">
-          <h1>Skills</h1>
-        </div>
+      <div class="my-5 border-bottom">
+        <h1>Skills</h1>
       </div>
       <ul>
         <li>Programming Languages:
@@ -315,24 +243,21 @@
   </section>
   <section>
     <div class="container">
-      <div class="row my-5 border-bottom">
-        <div class="col">
-          <div class="mb-3 text-muted"> </div>
-          <h1>Achievements</h1>
-        </div>
+      <div class="my-5 border-bottom">
+        <h1>Achievements</h1>
       </div>
       <h5>Competitions</h5>
       <div class="row">
         <img style="margin: 5px" src="./c3.svg" height="40" width="40">
         <div>
-          <p class="text-white" style="margin: 0px;">&lt;19 Freestyle Computer Contest</p>
-          <small class="text-muted">C3 Foundation (2020)</small>
+          <p class="text-white m-0">&lt19 Freestyle Computer Contest</p>
+          <small class="text-muted">C3 Foundation (2020), one from 12 winners</small>
         </div>
       </div>
       <div class="row">
         <img style="margin: 5px" src="./epam.svg" height="40" width="80">
         <div>
-          <p class="text-white" style="margin: 0px;">CSR HU: III. ScratchONline</p>
+          <p class="text-white m-0">CSR HU: III. ScratchONline</p>
           <small class="text-muted">Epam Hungary, V. prize (2020)</small>
         </div>
       </div>
@@ -341,11 +266,8 @@
   </section>
   <section>
     <div class="container">
-      <div class="row my-5 border-bottom">
-        <div class="col">
-          <div class="mb-3 text-muted"> </div>
-          <h1>Contact</h1>
-        </div>
+      <div class="my-5 border-bottom">
+        <h1>Contact</h1>
       </div>
       <div class="row">
         <div class="col content">
@@ -361,18 +283,28 @@
 
 
               <button class="btn btn-primary" id="send">Send</button>
-              <h4 id="response" style="color: #27f394;"></h4>
+              <h4 id="response" style="color: #00a156"></h4>
+              <h4 id="error" style="color: #b63a00"></h4>
             </div>
           </div>
           <div class="col-md-6">
             <p>I am on Social Medias too!</p>
             <div class="row">
-              <div class="col-2"> <a href="https://facebook.com/davidfegyver" target="_blank"><i
-                    class="fab fa-facebook"></i></a> </div>
-              <div class="col-2"> <a href="https://instagram.com/pea_and_friends" target="_blank"><i
-                    class="fab fa-instagram"></i></a> </div>
-              <div class="col-2"> <a href="https://github.com/davidfegyver" target="_blank"><i
-                    class="fab fa-github"></i></a> </div>
+              <div class="col-2">
+                <a href="https://facebook.com/davidfegyverr" target="_blank">
+                  <i class="fab fa-facebook"></i>
+                </a>
+              </div>
+              <div class="col-2">
+                <a href="https://instagram.com/pea_and_friends" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+              <div class="col-2">
+                <a href="https://github.com/davidfegyver" target="_blank">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
               <div class="col-2">
                 <a href="https://discord.gg/Qgwg4rQ" target="_blank">
                   <i class="fab fa-discord"></i>
@@ -388,17 +320,107 @@
   </section>
   <footer>
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>
-            ;) Thanks for checking my website
-          </p>
-        </div>
+      <div class="text-center">
+        <p>
+          ;) Thanks for checking my website
+        </p>
       </div>
     </div>
   </footer>
 
 
+  <script>
+    console.log("Dear reader")
+    console.log("This site is open-source!")
+    console.log("You can find it here: https://github.com/davidfegyver/davidfegyver.github.io")
+    console.log("Please give me a star if you like it :D ")
+    const spinner = document.getElementById("data-spinner")
+    const datalist = [
+      'Programmer', 'Backend developer', 'Bug Bounty hunter', 'Doing server stuff', 'Nodejs is the best :D ',
+      'Pokemon Go player', 'C3 competition winner',
+    ]
+    headeranim(datalist, spinner)
+
+    async function headeranim(datalist, spinner) {
+      await wait(2000)
+      while (true)
+        for (let i = 0; i < datalist.length - 1; i++) {
+          const next = datalist[i + 1]
+          const curr = datalist[i]
+
+          await transform(curr, next, spinner)
+          await wait(1500)
+        }
+    }
+
+    function randomString(length) {
+      let result = ""
+      for (let i = 0; i < length; i++) result += String.fromCharCode(Math.floor(Math.random() * 93 + 33))
+
+      return result
+    }
+
+
+    async function transform(prev, next, spinner) {
+      if (!prev || !next) return
+      if (prev.length < next.length) {
+        for (let i = prev.length; i <= next.length; i++) {
+          spinner.innerText = randomString(i)
+          await wait(150)
+        }
+      } else {
+        for (let i = prev.length; i >= next.length; i--) {
+          spinner.innerText = randomString(i)
+          await wait(150)
+        }
+      }
+      spinner.innerText = next
+    }
+
+    async function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    }
+  </script>
+  <script>
+    document.getElementById("send").onclick = (e) => {
+      const message = document.getElementById("message").value
+      const email = document.getElementById("email").value
+      //Ne hackelj meg kérlek :))
+      const xhr = new XMLHttpRequest()
+      xhr.open("POST",
+        "https://discord.com/api/webhooks/780886497926447115/4aDkiJQ5tiJ-o4uuUgs-8-EfzOhlgUkT3jus0G0jJXZzmBtVGuNWQ_RFf2WlKAQ4kceK",
+        true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.send(JSON.stringify({
+        "content": null,
+        "embeds": [{
+          "color": null,
+          "fields": [{
+              "name": "Email",
+              "value":email
+            },
+            {
+              "name": "Message",
+              "value": message
+            }
+          ]
+        }],
+        "username": "You received a message"
+      }))
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4) {
+
+          if (xhr.status == 204) document.getElementById("response").innerText="You succesfully sent your message"
+          else document.getElementById("response").innerText="There aws an error :/"
+
+        }
+      }
+
+
+
+    }
+  </script>
 
 </body>
 
