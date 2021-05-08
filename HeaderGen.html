@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HeaderGen</title>
+    <meta name="title" content="HeaderGen">
+    <meta name="description" content="Generate header images for your GitHub profile README.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HeaderGen">
+    <meta property="og:description" content="Generate header images for your GitHub profile README.">
+
+    <link rel="stylesheet" href="./style.css">
+    <style>:root {
+        --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+      }
+      
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: var(--font)
+      }
+      
+      h1 {
+        text-align: center
+      }
+      
+      p {
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 24px
+      }
+      
+      #name {
+        font-size: 16px;
+        font-family: var(--font);
+        width: 80%;
+        margin: auto;
+        max-width: 580px;
+        padding: 10px 20px;
+        border-radius: 3px;
+        margin-top: 0;
+        border: 1px solid #1b1b1b
+      }
+      
+      #introtext {
+        font-size: 16px;
+        font-family: var(--font);
+        width: 80%;
+        margin: auto;
+        max-width: 580px;
+        padding: 10px 20px;
+        border-radius: 3px;
+        margin-top: 0;
+        border: 1px solid #1b1b1b
+      }
+      
+      .color {
+        font-size: 16px;
+        font-family: var(--font);
+        padding: 10px 20px;
+        border-radius: 3px;
+        border: 1px solid #1b1b1b
+      }
+      
+      #canvas-wrap {
+        overflow: auto;
+        text-align: center
+      }
+      
+      #wrap {
+        overflow: auto;
+        text-align: center
+      }
+      
+      button {
+        border: 1px solid #1b1b1b;
+        padding: 10px 20px;
+        border-radius: 9px;
+        background-color: var(--primary);
+        font-size: 16px;
+        transition: 150ms;
+        margin-top: 10px;
+        margin-bottom: 10px
+      }
+      
+      button:hover {
+        background-color: #1b1b1b;
+        color: #fff;
+        transition: 150ms
+      }
+      
+      button:active {
+        background-color: #ffff66;
+        color: #1b1b1b;
+        transition: 150ms
+      }
+      
+      .heart {
+        color: #e25555
+      }</style>
+</head>
+
+<body>
+    <h1>HeaderGen</h1>
+    <p>Generate header images for your GitHub profile READMEs.</p>
+    <br><br>
+    <span class="color">
+        Background color:
+        <input type="color" placeholder="Background color" id="background" value="#db7b7b">
+    </span>
+
+    <br><br>
+    <span class="color">
+        Intro text color:
+        <input type="color" placeholder="Intro text color" id="introcolor" value="#1c1c1c">
+    </span>
+    <br><br>
+
+    <input id="introtext" type="text" placeholder="Intro text" value="Hi 👋, I'm">
+    <p>Most liked emojis:<br>
+        😀👋😄😁🤓😎🤩<br>
+        ✌️👀👨‍🎓👩‍💻👨‍💻🖥️💻 
+    </p>
+    <br><br>
+
+    <span class="color">
+        Name color:
+        <input type="color" placeholder="Name color" id="color" value="#1c1c1c">
+    </span>
+
+    <br><br>
+
+    <input id="name" type="text" placeholder="Your name here" value="Octocat">
+
+    <br><br>
+
+    <button onclick="downloadImage()">
+        Download image
+    </button>
+
+    <div id="canvas-wrap">
+        <canvas id="preview" width="1000px"height="300px"></canvas>
+    </div>
+
+    <br><br> 
+    Made with <span class="heart">❤</span> by David Fegyver
+
+    <script>
+        function updateImage() {
+            const background = document.getElementById("background").value
+            const introcolor = document.getElementById("introcolor").value
+            const introtext = document.getElementById("introtext").value
+            const color = document.getElementById("color").value
+            const name = document.getElementById("name").value
+
+
+
+            const c = document.getElementById("preview");
+            const ctx = c.getContext("2d");
+
+            let x = 70;
+            let y = 120;
+
+            ctx.fillStyle = background;
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            ctx.fillStyle = introcolor;
+            ctx.font = "40px Arial";
+            ctx.fillText(introtext, x, y);
+
+            ctx.fillStyle = color;
+            ctx.font = "bold 70px Arial";
+            ctx.fillText(name, x - 3, y + 70);
+
+        }
+        updateImage()
+
+        function downloadImage() {
+            const image = document.getElementById("preview").toDataURL("image/png")
+                .replace("image/png", "image/octet-stream");
+            Object.assign(document.createElement('a'), {
+                target: '_blank',
+                href: image,
+                download:'image.png'
+            }).click();
+        }
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))alert("Sorry this is not great looking on mobiles yet")
+        for(input of document.getElementsByTagName("input")) input.addEventListener('change', updateImage)
+    </script>
+</body>
+
+</html>
