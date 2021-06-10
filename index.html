@@ -6,12 +6,17 @@
   <meta http-equiv="content-type" content="text/html charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
   <script src="https://kit.fontawesome.com/8debc5900f.js" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
 
   <meta name="msvalidate.01" content="C6EFB324B4EED57E3F5DD73A4B4265DE" />
   <meta name="google-site-verification" content="vwvRgSPjMvdguaJfahYT0uPIRIHNOqKyTiqkSoPTOzI" />
+
+
   <meta content="David Fegyver" property="og:title">
   <meta content="The website of a young programmer :D " property="og:description">
   <meta content="http://davidfegyver.github.io" property="og:url">
@@ -20,82 +25,8 @@
     property="og:image">
   <meta content="#8080ff" data-react-helmet="true" name="theme-color">
 
-  <style>
-    .fab {
-      color: #fff
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      font-size: 18px;
-      line-height: 1.8;
-      font-weight: 400;
-      color: #8c8c8c;
-      position: relative;
-    }
-
-    body:after {
-      position: fixed;
-      top: -150px;
-      right: -50px;
-      bottom: 0;
-      content: '';
-      width: 400px;
-      height: 600px;
-      border: 2px solid rgba(255, 255, 255, .05);
-      z-index: -1;
-      -webkit-transform: rotate(-30deg);
-      -moz-transform: rotate(-30deg);
-      -ms-transform: rotate(-30deg);
-      -o-transform: rotate(-30deg);
-      transform: rotate(-30deg)
-    }
-
-    body:before {
-      position: fixed;
-      top: 500px;
-      left: -100px;
-      bottom: 0;
-      content: '';
-      width: 400px;
-      height: 400px;
-      border: 2px solid rgba(255, 255, 255, .05);
-      z-index: -1;
-      -webkit-transform: rotate(20deg);
-      -moz-transform: rotate(20deg);
-      -ms-transform: rotate(20deg);
-      -o-transform: rotate(20deg);
-      transform: rotate(20deg)
-    }
-
-    a {
-      -webkit-transition: .3s all ease;
-      -o-transition: .3s all ease;
-      transition: .3s all ease;
-      color: #2f89fc
-    }
-
-    a:hover {
-      text-decoration: none;
-      color: #2f89fc
-    }
-
-    .h1,
-    .h2,
-    .h3,
-    .h4,
-    .h5,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      line-height: 1.5;
-      color: #fff;
-      font-weight: 400
-    }
-  </style>
+  <link href="./style.css" rel="stylesheet">
+  </link>
 </head>
 
 <body>
@@ -121,11 +52,20 @@
         <div class="col-md-6 wrap">
           <div class="p-5">
 
-            <h2 class="mb-5">Hi! I'm David Fegyver</h2>
+            <h2 class="mb-5">Hi! I'm David</h2>
 
-            <p>I’m 14. I've been around computers since I was little and I've been coding for 4+ years now. I love
+            <p>I’m 14 from Hungary. I've been around computers since I was little and I've been coding for 4+ years now. I love
               thinking about new ideas and turning them into big projects. I am interested in
-              Machine Learning, Data visualization/processing, Server side data handling and Hardware. </p>
+              Machine Learning, Data visualization, Backend development, Hacking and Arduino</p>
+
+            <div class="mb-3" style="font-family: monospace;">
+              <h5 class="mb-1" id="playing"></h5>
+              <a href="" id="url">
+
+                <span id="artist" class="text-white"></span> - <span id="track" class="text-white"></span>
+              </a>
+
+            </div>
 
             <div class="row">
               <div class="col-2">
@@ -169,7 +109,8 @@
           <ul class="item-list list-unstyled mb-0 px-3">
             <li class="mb-5">
               <h3 class="mb-0">Facebook-breachchecker</h3>
-              <div class="text-justify"> A nodejs+sqlite+express application where you can check if Facebook leaked your mobile number </div>
+              <div class="text-justify"> A nodejs+sqlite+express application where you can check if Facebook leaked your
+                mobile number </div>
               <div class="text-muted">
                 <a href="https://github.com/davidfegyver/fb-breachchecker" target="_blank">Source</a> /
                 <a href="http://davidfegyver.v4y.hu" target="_blank">LIVE VERSION (Not always active, sorry)</a> /
@@ -177,7 +118,7 @@
             </li>
             <li class="mb-5">
               <h3 class="mb-0">Maskimum</h3>
-              <div class="text-justify"> TODO :P </div>
+              <div class="text-justify"> Well this is a face-mask detection system </div>
               <div class="text-muted">
                 <a href="https://github.com/davidfegyver/szabadfogasu-maszk" target="_blank">Source</a> /
                 <a href="https://www.youtube.com/watch?v=eLyNWEL1Los" target="_blank">Demo video</a> /
@@ -259,7 +200,7 @@
         <img style="margin: 5px" src="./c3.svg" height="40" width="40">
         <div>
           <p class="text-white m-0">&lt19 Freestyle Computer Contest</p>
-          <small class="text-muted">C3 Foundation (2020), one from 12 winners</small>
+          <small class="text-muted">C3 Foundation (2020), one from 13 winners</small>
         </div>
       </div>
       <div class="row">
@@ -337,99 +278,9 @@
   </footer>
 
 
-  <script>
-    console.log("Dear reader")
-    console.log("This site is open-source!")
-    console.log("You can find it here: https://github.com/davidfegyver/davidfegyver.github.io")
-    console.log("Please give me a star if you like it :D ")
-    const spinner = document.getElementById("data-spinner")
-    const datalist = [
-      'Programmer', 'Backend developer', 'Bug Bounty hunter', 'Doing server stuff', 'Nodejs is the best :D ',
-      'Pokemon Go player', 'C3 competition winner',
-    ]
-    headeranim(datalist, spinner)
-
-    async function headeranim(datalist, spinner) {
-      await wait(2000)
-      while (true)
-        for (let i = 0; i < datalist.length - 1; i++) {
-          const next = datalist[i + 1]
-          const curr = datalist[i]
-
-          await transform(curr, next, spinner)
-          await wait(1500)
-        }
-    }
-
-    function randomString(length) {
-      let result = ""
-      for (let i = 0; i < length; i++) result += String.fromCharCode(Math.floor(Math.random() * 93 + 33))
-
-      return result
-    }
-
-
-    async function transform(prev, next, spinner) {
-      if (!prev || !next) return
-      if (prev.length < next.length) {
-        for (let i = prev.length; i <= next.length; i++) {
-          spinner.innerText = randomString(i)
-          await wait(150)
-        }
-      } else {
-        for (let i = prev.length; i >= next.length; i--) {
-          spinner.innerText = randomString(i)
-          await wait(150)
-        }
-      }
-      spinner.innerText = next
-    }
-
-    async function wait(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms))
-    }
-  </script>
-  <script>
-    document.getElementById("send").onclick = (e) => {
-      const message = document.getElementById("message").value
-      const email = document.getElementById("email").value
-      //Ne hackelj meg kérlek :))
-      const xhr = new XMLHttpRequest()
-      xhr.open("POST",
-        "https://discord.com/api/webhooks/780886497926447115/4aDkiJQ5tiJ-o4uuUgs-8-EfzOhlgUkT3jus0G0jJXZzmBtVGuNWQ_RFf2WlKAQ4kceK",
-        true)
-      xhr.setRequestHeader('Content-Type', 'application/json')
-      xhr.send(JSON.stringify({
-        "content": null,
-        "embeds": [{
-          "color": null,
-          "fields": [{
-              "name": "Email",
-              "value":email
-            },
-            {
-              "name": "Message",
-              "value": message
-            }
-          ]
-        }],
-        "username": "You received a message"
-      }))
-
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
-
-          if (xhr.status == 204) document.getElementById("response").innerText="You succesfully sent your message"
-          else document.getElementById("response").innerText="There aws an error :/"
-
-        }
-      }
-
-
-
-    }
-  </script>
-
+  <script src="./spinner.js"></script>
+  <script src="./webhook.js"></script>
+  <script src="./nowPlaying.js"></script>
 </body>
 
 </html>
